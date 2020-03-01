@@ -1,2 +1,1 @@
-Xs&Os
-https://arseniykalabin.github.io/xsos/
+Xs&O
