@@ -35,11 +35,11 @@ class Board extends Component {
         }
         tempArr[id] = this.state.player;
         this.setState({cells: tempArr});  
-        this.checkWinner(tempArr);     
-        this.checkDraw(tempArr);     
+        this.checkWinner(tempArr);   
     }
 
     checkWinner = (tempArr) => {
+        let counter = 0;
         for (let i in winnerLines){
             if (
                 tempArr[winnerLines[i][0]] 
@@ -50,15 +50,6 @@ class Board extends Component {
                     return;
                 }
         }
-        this.setState((state) => {
-            return {
-                    player: state.player === 'X'?'O':'X'
-                };
-          });  
-    }
-
-    checkDraw = (tempArr) => {
-        let counter = 0;
         tempArr.forEach(val => {
             if(!val){
                 counter++;
@@ -66,7 +57,9 @@ class Board extends Component {
         });
         if(!counter){
             this.setState({draw:true});
+            return;
         }
+        this.setState(state => ({player: state.player === 'X'?'O':'X'}));
     }
 
     randomMoveHandler = () => {
